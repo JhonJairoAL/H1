@@ -1,3 +1,4 @@
+importScripts('js/sw-utils.js');
 const STATIC_CACHE = 'static-03-2020';
 const DYNAMIC_CACHE = 'dynamic-03-2020';
 const INMUTABLE_CACHE = 'inmutable-03-2020';
@@ -64,6 +65,36 @@ self.addEventListener('activate', e => {
     e.waitUntil(respuesta);
 });
 
+
+/*
+self.addEventListener('fetch', e => {
+    // Cache with Network Fallback
+    const respuesta = caches.match(e.request)
+        .then(res => {
+            if (res) return res;
+
+            // Si no existe el archivo
+            // IMPORTANTE: Clonar la respuesta. La respuesta es un stream
+            return fetch(e.request).then(newRes => {
+                caches.open(DYNAMIC_CACHE)
+                    .then(cache => {
+                        cache.put(e.request, newRes);
+                        limpiarCache(DYNAMIC_CACHE, DYNAMIC_CACHE_LIMIT);
+                    });
+
+                return newRes.clone();
+            })
+                .catch(err => {
+                    if (e.request.headers.get('accept').includes('text/html')) {
+                        return caches.match('/pages/error.html');
+                    }
+                });
+        });
+
+    e.respondWith(respuesta);
+});
+*/
+/*
 self.addEventListener('fetch', e => {
     // Cache with Network Fallback
     const respuesta = caches.match(e.request)
@@ -87,4 +118,30 @@ self.addEventListener('fetch', e => {
         });
 
     e.respondWith(respuesta);
+});
+*/
+
+self.addEventListener( 'fetch', e => {
+
+
+    const respuesta = caches.match( e.request ).then( res => {
+
+        if ( res ) {
+            return res;
+        } else {
+
+            return fetch( e.request ).then( newRes => {
+
+                return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
+
+            });
+
+        }
+
+    });
+
+
+
+    e.respondWith( respuesta );
+
 });
