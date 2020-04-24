@@ -64,31 +64,27 @@ self.addEventListener('activate', e => {
     e.waitUntil(respuesta);
 });
 
-
 self.addEventListener('fetch', e => {
     // Cache with Network Fallback
     const respuesta = caches.match(e.request)
         .then(res => {
-            if (res) return res;
+            if (res) { return res; } else {
+                return fetch(e.request).then(newRes => {
+                    caches.open(DYNAMIC_CACHE)
+                        .then(cache => {
+                            cache.put(e.request, newRes);
+                            limpiarCache(DYNAMIC_CACHE, DYNAMIC_CACHE_LIMIT);
+                        });
 
-            // Si no existe el archivo
-            // IMPORTANTE: Clonar la respuesta. La respuesta es un stream
-            return fetch(e.request).then(newRes => {
-                caches.open(DYNAMIC_CACHE)
-                    .then(cache => {
-                        cache.put(e.request, newRes);
-                        limpiarCache(DYNAMIC_CACHE, DYNAMIC_CACHE_LIMIT);
+                    return newRes.clone();
+                })
+                    .catch(err => {
+                        if (e.request.headers.get('accept').includes('text/html')) {
+                            return caches.match('/pages/error.html');
+                        }
                     });
-
-                return newRes.clone();
-            })
-                .catch(err => {
-                    if (e.request.headers.get('accept').includes('text/html')) {
-                        return caches.match('/pages/error.html');
-                    }
-                });
+            }
         });
 
     e.respondWith(respuesta);
 });
-
