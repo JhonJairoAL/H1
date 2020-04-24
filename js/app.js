@@ -30,7 +30,7 @@ document.getElementById('switch').addEventListener('click', temaKDA, false);
 
 // Validación de ruta Desarrollo/Producción
 var url = window.location.href;
-var swLocation = '/ProyectoFinal/sw.js';
+var swLocation = '/H1/sw.js';
 
 // Service Worker
 if(navigator.serviceWorker){
