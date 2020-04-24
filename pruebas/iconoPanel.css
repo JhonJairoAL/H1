@@ -1,0 +1,67 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+.oculto {
+    display: none;
+}
+
+header h1 {
+    text-align: center;
+    color: rgba(71, 17, 71, 0.815);
+}
+
+nav {
+    background-color: rgb(71, 17, 71);
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin: 2%;
+    border-radius: 20px;
+    opacity: 0.8;
+    padding: 1%;
+}
+
+.panel {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.panel__boton--general, .panel__boton--ajustes, .panel__boton--lugares, .panel__boton--clima, .panel__boton--planes {
+    background-color: white;
+    height: 20vh;
+    flex: 1 1 40%;
+    margin: 5%; /* Necesario? en la version fusionada(web y movil) no hace falta*/
+    border-radius: 8%;
+    padding-top: 5%;
+    opacity: 0.9;
+}
+
+.panel__boton--general img, .panel__boton--ajustes img, .panel__boton--lugares img, .panel__boton--clima img, .panel__boton--planes img, .nav__boton img {
+    margin: auto;
+    display: block;
+}
+
+.panel__boton--general p, .panel__boton--ajustes p, .panel__boton--lugares p, .panel__boton--clima p, .panel__boton--planes p {
+    text-align: center;
+}
+
+
+/**/
+.nav__boton {
+    flex: 1 1 30%;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(71, 17, 71);
+}

@@ -1,0 +1,73 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    background-image: url(img/kda.jpg);
+}
+
+.oculto{
+    display: none;
+}
+
+header h1 {
+    text-align: center;
+    color: aqua;
+    background-color: rgb(71, 16, 83);
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
+    padding: 1%;
+    margin-left: 35%;
+    margin-right: 35%;
+    opacity:0.9;
+    border-radius: 10px;
+}
+
+.panel {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.panel__boton--general, .panel__boton--ajustes, .panel__boton--lugares, .panel__boton--clima, .panel__boton--planes{
+    background-color: rgb(71, 16, 83);
+    height: 20vh;
+    flex: 1 1 0%; /*Cero % ??????*/
+    margin: 5%;
+    border-radius: 5%;
+    padding-top: 5%;
+    opacity:0.9;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.panel__boton img , .nav__boton img{
+    margin: auto;
+    display: block;
+}
+
+.panel__boton p {
+    text-align: center;
+}
+
+.nav {
+    background-color: rgb(71, 17, 71);
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    border-radius: 5%;
+    opacity:0.8;
+}
+
+.nav__boton {
+    flex: 1 1 30%;
+}
+
+a {
+text-decoration: none;
+color: aqua;
+}
